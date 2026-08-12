@@ -20,6 +20,10 @@ function App() {
       console.log("Connected to server:", socket.id);
     });
 
+    socket.on("connect_error", (error) => {
+      console.error("Socket connection error:", error.message);
+    });
+
     socket.on("disconnect", () => {
       console.log("Disconnected from server");
     });
@@ -42,6 +46,8 @@ function App() {
   };
 
   const handleLeave = () => {
+    socket.emit("leave", room);
+
     setUsername("");
     setRoom("");
     setJoined(false);
@@ -50,8 +56,8 @@ function App() {
   return (
     <>
       {!joined ? (
-        <div className="join-group-container">
-          <h2>Join a Chat Group</h2>
+        <div>
+          <h1>Join a Chat Group</h1>
 
           <form className="join-group-form" onSubmit={handleSubmit}>
             <input
