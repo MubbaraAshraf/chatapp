@@ -3,7 +3,7 @@ import ChatRoom from "./components/ChatRoom";
 import "./App.css";
 import { io } from "socket.io-client";
 
-const SOCKET_URL = "https://chatbackend-production.up.railway.app";
+const SOCKET_URL = "https://chatbackend-production-631a.up.railway.app";
 
 let socket;
 
@@ -21,7 +21,7 @@ function App() {
     });
 
     socket.on("connect_error", (error) => {
-      console.error("Socket connection error:", error.message);
+      console.log("Connection error:", error.message);
     });
 
     socket.on("disconnect", () => {
